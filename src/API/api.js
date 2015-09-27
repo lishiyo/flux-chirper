@@ -3,18 +3,21 @@ import dispatcher from '../dispatcher';
 import constants from '../constants';
 
 export default {
-    fetchChirps: function() {
+    fetchChirps () {
         get('/api/chirps')
             .then(actions.gotChirps.bind(actions));
     },
-    saveChirp: function(text) {
+    fetchUsers () {
+        get('/api/users')
+            .then(actions.gotUsers.bind(actions));
+    },
+    saveChirp (text) {
         text = text.trim();
         if (text === '') return;
 
         post('/api/chirps', { text: text })
             .then(data => {
-                console.log("saveChirp got data", data);
-                actions.chirped.bind(actions);
+                actions.chirped.call(actions, data);
             });
     }
 };

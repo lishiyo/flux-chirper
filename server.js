@@ -13,6 +13,7 @@ app
   .use(login.routes)
   .use(serverRouter.authRoutes)
   .use(serverRouter.chirpsRoutes)
+  .use(serverRouter.usersRoutes)
   // pass multiple functions to route creator to run sequentially
   // login.required calls next() if valid, redirects to /login if error
   .get("*", login.required, function(req, res) { // any request not captured by static middleware

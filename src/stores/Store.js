@@ -6,26 +6,21 @@ const CHANGE_EVENT = 'CHANGE';
 
 let baseMethods = {
     init() {},
-    getState () { // current state
-        return { chirps: this.all() }; 
-    },
     set (arr) {
         let currIds = this._data.map(m => m.cid);
         arr.filter(item => {
             return currIds.indexOf(item.cid) === -1;
         }).forEach(this.add.bind(this));
-
-        console.log("data set! ++ ", this._data);
     },
     add (item) {
-        console.log("store add ++ ", item);
         this._data.push(item);
     },
     all () {
         return this._data;
     },
     get (id) {
-        return find(this._data, (item) => {
+        return find(this._data, item => {
+            console.log("getting id", item, id);
             return item.cid === id;
         });
     },
@@ -36,6 +31,7 @@ let baseMethods = {
         this.removeListener(CHANGE_EVENT, fn);
     },
     emitChange () {
+        console.log("store ++ EMIT CHANGE!!");
         this.emit(CHANGE_EVENT);
     },
     bindAction (actionType, actionFn) { // create actions hash
@@ -70,6 +66,7 @@ function createStore(methods) {
         if (store.actions[action.actionType]) {
             store.actions[action.actionType].forEach(fn => {
                 fn.call(store, action.data);
+                store.emitChange();
             });
         };
     });
@@ -77,5 +74,7 @@ function createStore(methods) {
     return store;
 }
 
-export default createStore;
+export default { 
+    createStore 
+};
 

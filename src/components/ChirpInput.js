@@ -5,7 +5,7 @@ import ChirpInputView from './views/ChirpInputView';
 class ChirpInput extends React.Component {
   constructor(props) {
     super(props);
-    // get initial state
+    // set initial state
     this.state = {
       value: ''
     };
@@ -15,13 +15,13 @@ class ChirpInput extends React.Component {
   }
 
   handleChange(event) {
+    // update state to send to handleClick
     this.setState({
       value: event.target.value
     });
   }
 
   handleClick(event) {
-    // call onSave handler
     this.props.onSave(this.state.value);
 
     this.setState({
@@ -33,8 +33,8 @@ class ChirpInput extends React.Component {
     return (
       <ChirpInputView
         value={this.state.value}
-        changeHandler={this.handleChange}
-        clickHandler={this.handleClick} />
+        onChange={this.handleChange}
+        onClick={this.handleClick} />
     );
   }
 }

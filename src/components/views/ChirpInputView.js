@@ -14,12 +14,12 @@ class ChirpInputView extends React.Component {
             type='text'
             placeholder='Say Something'
             value={this.props.value}
-            onChange={this.props.changeHandler} />
+            onChange={this.props.onChange.bind(this)} />
         </div>
         <div className='three columns'>
           <button 
             className='u-full-width button-primary'
-            onClick={this.props.clickHandler} >
+            onClick={this.props.onClick.bind(this)} >
               Chirp
           </button>
         </div>
@@ -30,8 +30,8 @@ class ChirpInputView extends React.Component {
 
 ChirpInputView.propTypes = {
   value: React.PropTypes.string,
-  changeHandler: React.PropTypes.func.isRequired,
-  clickHandler: React.PropTypes.func.isRequired,
+  onChange: React.PropTypes.func.isRequired,
+  onClick: React.PropTypes.func.isRequired,
 }
 
 export default ChirpInputView;

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 const router = module.exports = Router();
-import login from '../auth/login';
+import { required } from '../auth/login';
 
 // ========= CHIRPS API ========
 
@@ -13,7 +13,7 @@ GET /api/chirps
 POST /api/chirps
 **/
 router.route('/api/chirps')
-    .all(login.required)
+    .all(required)
     .get((req, res) => {
         res.json(chirps.toArray());
     })
@@ -29,3 +29,5 @@ router.route('/api/chirps')
         let id = chirps.insert(chirp);
         res.json(chirps.get(id));
     });
+
+export default router;
