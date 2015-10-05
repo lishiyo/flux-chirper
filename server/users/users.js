@@ -10,24 +10,22 @@ const users = db.collection('users');
 
 /**
 GET /api/users
-POST /api/users
+POST /api/users - new user
 **/
 router.route('/api/users')
     .all(required)
     .get((req, res) => {
         res.json(users.toArray().map(makeUserSafe) );
-    })
+    });
+    
+/**
+POST /api/follow
+POST /api/unfollow
+**/
+router.route('/api/follow')
+    .all(required)
     .post((req, res) => {
-        let user = req.body; // text
-        user.cid = req.user.cid;
-
-        // TO BE REMOVED
-        user.username = req.user.username;
-        user.fullname = req.user.fullname;
-        user.email = req.user.email;
-
-        let id = users.insert(user);
-        res.json(users.get(id));
+        let userId = req.body
     });
 
 export default router;

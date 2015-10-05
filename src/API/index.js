@@ -9,6 +9,12 @@ dispatcher.register(action => {
         case constants.CHIRP:
             API.saveChirp(action.data);
             break;
+        case constants.FOLLOW:
+            API.follow(action.data);
+            break;
+        case constants.UNFOLLOW:
+            API.unfollow(action.data);
+            break;
     }
 });
 

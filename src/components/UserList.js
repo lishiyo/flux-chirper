@@ -27,7 +27,10 @@ class UserList extends React.Component {
     return UserStore.getState();
   }
   render() {
-    let users = this.renderUsers();
+    let users = this.state.users.filter(user => {
+      return this.state.user.cid !== user.cid;
+    });
+    users = this.renderUsers(users);
 
     return (
       <ul>
@@ -35,10 +38,8 @@ class UserList extends React.Component {
       </ul>
     );
   }
-  renderUsers() {
-    return this.state.users.filter(user => {
-      return this.state.user.cid !== user.cid;
-    }).map(user => {
+  renderUsers(users) {
+    return users.map(user => {
       return (
         <Box key={user.cid} 
           user={user} >

@@ -19,6 +19,13 @@ export default {
             .then(data => {
                 actions.chirped.call(actions, data);
             });
+    },
+    follow(userId) {
+        post('/api/follow/', { userId: userId })
+            .then(actions.followed.bind(actions));
+    },
+    unfollow(userId) {
+
     }
 };
 

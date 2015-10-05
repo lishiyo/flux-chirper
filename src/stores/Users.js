@@ -13,7 +13,6 @@ const UserStore = Store.createStore({
         this.currentUser = data;
     },
     getState() {
-        console.log("UserStore get state!", this.all());
         return {
             users: this.all(),
             user: this.currentUser
