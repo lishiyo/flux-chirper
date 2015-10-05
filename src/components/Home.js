@@ -13,7 +13,7 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     // initial state
-    this.state = this.getState();
+    this.state = ChirpStore.getState();
 
     // alias handlers
     this.onChange = this.onChange.bind(this);
@@ -26,10 +26,7 @@ class Home extends React.Component {
     ChirpStore.removeChangeListener(this.onChange);
   }
   onChange() {
-    this.setState(() => this.getState());
-  }
-  getState() {
-    return ChirpStore.getState();
+    this.setState(ChirpStore.getState());
   }
   saveChirp(text) {
     actions.chirp(text);

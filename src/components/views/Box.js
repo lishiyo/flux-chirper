@@ -8,7 +8,7 @@ import { avatar } from './../../utils/utils';
 // timestamp
 // text || buttons <-- child element
 
-class ChirpBox extends React.Component {
+class Box extends React.Component {
   render() {
     const user = this.props.user;
     const timestamp = this._timestamp();
@@ -41,8 +41,8 @@ class ChirpBox extends React.Component {
   }
 }
 
-ChirpBox.propTypes = {
+Box.propTypes = {
   user: React.PropTypes.object.isRequired
 }
 
-export default ChirpBox;
+export default Box;

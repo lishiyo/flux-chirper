@@ -1,6 +1,6 @@
 import React from 'react';
-import actions from '../actions/actions';
-import UserStore from '../stores/Users';
+import actions from '../../actions/actions';
+import UserStore from '../../stores/Users';
 
 export default class FollowButton extends React.Component {
   constructor(props) {

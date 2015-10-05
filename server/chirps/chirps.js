@@ -26,7 +26,8 @@ router.route('/api/chirps')
         chirp.fullname = req.user.fullname;
         chirp.email = req.user.email;
 
-        let id = chirps.insert(chirp);
+        // create a chirp and return it
+        const id = chirps.insert(chirp);
         res.json(chirps.get(id));
     });
 

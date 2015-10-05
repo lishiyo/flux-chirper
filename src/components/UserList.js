@@ -4,12 +4,13 @@ import actions from '../actions/actions';
 import { Link } from 'react-router';
 // Sub-components
 import Box from './views/Box';
+import FollowButton from './views/FollowButton';
 
 class UserList extends React.Component {
   constructor(props) {
     super(props);
     // initial state
-    this.state = this.getState();
+    this.state = UserStore.getState(); // { users, user }
 
     // aliases
     this.onChange = this.onChange.bind(this);
@@ -21,10 +22,7 @@ class UserList extends React.Component {
     UserStore.removeChangeListener(this.onChange);
   }
   onChange() {
-    this.setState(this.getState.call(this));
-  }
-  getState() {
-    return UserStore.getState();
+    this.setState(UserStore.getState());
   }
   render() {
     let users = this.state.users.filter(user => {
@@ -43,7 +41,7 @@ class UserList extends React.Component {
       return (
         <Box key={user.cid} 
           user={user} >
-          Follow Buttons
+          <FollowButton userId={user.cid} currentUser={this.state.user}/>
         </Box>
       )
     });

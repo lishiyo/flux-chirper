@@ -9,14 +9,18 @@ const UserStore = Store.createStore({
         this.bindAction(constants.FOLLOWED, this.updateUser);
         this.bindAction(constants.UNFOLLOWED, this.updateUser);
     },
-    updateUser(data) {
-        this.currentUser = data;
+    updateUser(user) {
+        console.log("updateUser", user);
+        this.currentUser = user;
     },
     getState() {
         return {
             users: this.all(),
             user: this.currentUser
         }
+    },
+    getCurrentUser() {
+        return this.currentUser;
     }
 });
 

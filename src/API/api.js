@@ -21,11 +21,12 @@ export default {
             });
     },
     follow(userId) {
-        post('/api/follow/', { userId: userId })
+        post('/api/follow/' + userId)
             .then(actions.followed.bind(actions));
     },
     unfollow(userId) {
-
+        post('/api/unfollow/' + userId)
+            .then(actions.unfollowed.bind(actions));
     }
 };
 
